@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor Nama Undangan IPNU IPPNU Pandean</title>
+  <meta name="description" content="Generator nama untuk Undangan IPNU IPPNU Pandean">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="header">
+      <div class="header-glow"></div>
+      <h1 class="header-title">Undangan IPNU-IPPNU</h1>
+      <p class="header-subtitle">Generator Nama Penerima</p>
+    </header>
+
+    <!-- Controls -->
+    <section class="input-section">
+      <div class="input-card">
+        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+          <div style="flex: 1;">
+            <label for="nomor-input" class="input-label">
+              <span class="label-icon">🔢</span>
+              No. Urut (xxx)
+            </label>
+            <input type="text" id="nomor-input" value="001" placeholder="Contoh: 001" autocomplete="off"
+              class="form-input">
+          </div>
+          <div style="flex: 2;">
+            <label for="nama-input" class="input-label">
+              <span class="label-icon">✏️</span>
+              Nama Penerima (Yth.)
+            </label>
+            <input type="text" id="nama-input" value="Takmir Masjid Al-Kahfi" placeholder="Ketik nama penerima..."
+              autocomplete="off" class="form-input">
+          </div>
+        </div>
+        <button id="btn-update" class="btn-update full-width" title="Terapkan Perubahan">
+          Update Dokumen
+        </button>
+        <p class="input-hint" style="text-align: center; margin-top: 10px;">Tekan <kbd>Enter</kbd> atau klik Update
+          untuk memperbarui live preview di bawah.</p>
+      </div>
+    </section>
+
+    <!-- Document Layout Preview -->
+    <section class="preview-section">
+      <div class="preview-label">
+        <span class="preview-label-dot"></span>
+        Preview Dokumen Asli
+      </div>
+
+      <!-- A4 Document Wrapper -->
+      <div class="document-page">
+        <!-- Header Kop Surat -->
+        <div class="kop-surat">
+          <div class="logo-container">
+            <img src="assets/image2.png" alt="Logo IPNU" class="logo-ipnu">
+            <img src="assets/image1.png" alt="Logo IPPNU" class="logo-ippnu">
+          </div>
+          <div class="kop-text">
+            <div class="kop-title-1">IPNU IPPNU PANDEAN BERSHOLAWAT 2.0</div>
+            <div class="kop-title-2">IKATAN PELAJAR NAHDLATUL ULAMA</div>
+            <div class="kop-title-3">IKATAN PELAJAR PUTRI NAHDLATUL ULAMA</div>
+            <div class="kop-title-4">PANDEAN</div>
+            <div class="kop-address">Jl. Silikat Rw. 11 , Purwantoro, Blimbing, Kota Malang</div>
+            <div class="kop-contact">
+              <span>+62 813 3168 0380, +62 882 3154 2690 <img src="assets/image3.png" alt="WA" class="icon-wa"></span>
+              <span>ipnuippnupandean01@gmail.com <img src="assets/image4.png" alt="Email" class="icon-email"></span>
+              <span>www.pelajarmalang.com <img src="assets/image5.png" alt="Web" class="icon-web"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider-line"></div>
+
+        <!-- Meta info & Address -->
+        <div class="meta-address-section">
+          <div class="meta-info">
+            <table>
+              <tr>
+                <td>Nomor</td>
+                <td>: <strong id="preview-nomor">001/Pan-IIPB/IPNU-IPPNU/VII/2024</strong></td>
+              </tr>
+              <tr>
+                <td>Lampiran</td>
+                <td>: 1(1)</td>
+              </tr>
+              <tr>
+                <td>Perihal</td>
+                <td>: <strong>UNDANGAN</strong></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="recipient-box">
+            <div class="yth-line">Kepada Yth.</div>
+            <div class="yth-name" id="preview-nama">Takmir Masjid Al-Kahfi</div>
+            <div class="yth-di">di -</div>
+            <div class="yth-tempat">Tempat</div>
+          </div>
+        </div>
+
+        <!-- Surat Body -->
+        <div class="surat-body">
+          <p class="salut-opening">Assalamu'alaikum Wr. Wb.</p>
+          <p class="basmalah">Bismillahirrahmaanirrahiim</p>
+
+          <p class="paragraf">Salam silaturahmi kami sampaikan, semoga taufiq dan hidayah Allah SWT senantiasa
+            tercurahkan pada kita, sehingga dapat mengemban amanat dengan sebaik-baiknya. Sholawat dan salam semoga
+            tetap tercurahkan kepada junjungan kita Nabi Muhammad SAW. Aamiin.</p>
+
+          <p class="paragraf">Sehubungan dengan akan diselenggarakannya <strong>"IPNU IPPNU PANDEAN BERSHOLAWAT
+              2.0"</strong> dengan tema <strong>"Bersama dalam ukhuwah berjuang menggapai cintanya"</strong> yang akan
+            dilaksanakan pada:</p>
+
+          <table class="detail-acara-table">
+            <tr>
+              <td style="width: 80px;">hari</td>
+              <td>: Minggu</td>
+            </tr>
+            <tr>
+              <td>tanggal</td>
+              <td>: 21 Juli 2024</td>
+            </tr>
+            <tr>
+              <td>pukul</td>
+              <td>: 19:00 - selesai</td>
+            </tr>
+            <tr>
+              <td>tempat</td>
+              <td>: Halaman Balai RW 10</td>
+            </tr>
+          </table>
+
+          <p class="paragraf">berkaitan dengan hal diatas, maka kami selaku panitia pelaksana bermaksud mengundang bapak
+            untuk hadir dalam acara tersebut.</p>
+
+          <p class="paragraf">Demikian surat undangan ini kami buat, atas kesediaan dan kerjasamanya kami sampaikan
+            banyak terima kasih.</p>
+
+          <p class="salut-closing-arabic">Wallahul muwafiq ila aqwamith thariq</p>
+          <p class="salut-closing">Wassalamu'alaikum Wr. Wb.</p>
+        </div>
+
+        <!-- Tanda Tangan Section -->
+        <div class="signature-section">
+          <div class="date-location">Malang, 17 Dzulqa'dah 1445 H<br>25 Mei 2024 M</div>
+
+          <div class="panitia-title">
+            PANITIA IPNU IPPNU PANDEAN BERSHOLAWAT 2.0<br>
+            IKATAN PELAJAR NAHDLATUL ULAMA<br>
+            IKATAN PELAJAR PUTRI NAHDLATUL ULAMA<br>
+            PANDEAN
+          </div>
+
+          <div class="sign-row">
+            <div class="sign-col">
+              <div class="sign-name">M. SYARIFUDIN</div>
+              <div class="sign-role">Ketua Pelaksana</div>
+            </div>
+            <div class="sign-col">
+              <div class="sign-name">NASYWA QONITAH N. P.</div>
+              <div class="sign-role">Sekretaris Pelaksana</div>
+            </div>
+          </div>
+
+          <div class="mengetahui-section">
+            <div class="mengetahui-title">Mengetahui,<br>PIMPINAN RANTING<br>IKATAN PELAJAR NAHDLATUL ULAMA<br>IKATAN
+              PELAJAR PUTRI NAHDLATUL ULAMA<br>PANDEAN</div>
+
+            <div class="sign-row">
+              <div class="sign-col">
+                <div class="sign-name">M. YUAN AL HIKAM</div>
+                <div class="sign-role">Ketua IPNU</div>
+              </div>
+              <div class="sign-col">
+                <div class="sign-name">Z. AJENG ASNAWATI</div>
+                <div class="sign-role">Ketua IPPNU</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Actions -->
+    <section class="action-section">
+      <button id="btn-print" class="btn-action btn-print">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Cetak Dokumen
+      </button>
+      <button id="btn-reset" class="btn-action btn-reset">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+          <path d="M3 3v5h5"></path>
+        </svg>
+        Reset Nama
+      </button>
+    </section>
+
+    <footer class="footer">
+      <p>IPNU IPPNU Ranting Pandean, Malang</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

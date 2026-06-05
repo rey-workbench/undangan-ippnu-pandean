@@ -1,0 +1,555 @@
+:root {
+  --bg-gradient: linear-gradient(135deg, #090d16 0%, #0c1724 50%, #03140b 100%);
+  --panel-bg: rgba(22, 33, 49, 0.65);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --primary-accent: #10b981;
+  --primary-glow: rgba(16, 185, 129, 0.2);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --document-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 860px; /* Wider container for the real A4 sheet ratio */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  position: relative;
+  padding: 10px 0;
+}
+
+.header-glow {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 80px;
+  background: var(--primary-accent);
+  filter: blur(60px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.header-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(120deg, #ffffff 40%, var(--primary-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+/* Input Card */
+.input-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #e2e8f0;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.form-input {
+  width: 100%;
+  background: rgba(10, 15, 26, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+.btn-update {
+  background: var(--primary-accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+.btn-update.full-width {
+  width: 100%;
+}
+
+.btn-update:hover {
+  background: #059669;
+}
+
+.input-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.input-hint kbd {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 1px 4px;
+  font-size: 0.7rem;
+}
+
+/* Preview Section */
+.preview-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.preview-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+
+.preview-label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary-accent);
+  box-shadow: 0 0 8px var(--primary-accent);
+}
+
+/* A4 Document styling */
+.document-page {
+  background: white;
+  color: #000000;
+  width: 100%;
+  padding: 40px 50px;
+  box-shadow: var(--document-shadow);
+  border-radius: 12px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif; /* matches standard docx default sans-serif font */
+}
+
+/* Kop Surat */
+.kop-surat {
+  position: relative;
+  min-height: 130px; /* Diperbesar untuk menyesuaikan logo */
+  padding-left: 245px; /* Memberi ruang lebih untuk logo yang membesar */
+  margin-bottom: 8px;
+  font-family: "Times New Roman", Times, serif; /* Menggunakan font serif untuk header agar persis dokumen resmi */
+}
+
+.logo-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  gap: 10px; /* Jarak sedikit dirapatkan agar proporsional */
+  align-items: center;
+}
+
+.logo-ipnu {
+  height: 115px; /* Logo jauh lebih besar */
+  width: auto;
+}
+
+.logo-ippnu {
+  height: 115px; /* Logo jauh lebih besar */
+  width: auto;
+}
+
+.kop-text {
+  text-align: right;
+  color: #000;
+  padding-top: 4px;
+}
+
+.kop-title-1 {
+  font-weight: bold;
+  font-size: 1.15rem;
+  color: #1b9d40; /* Hijau IPNU/IPPNU sesuai PDF */
+  letter-spacing: 0.2px;
+  margin-bottom: 2px;
+}
+
+.kop-title-2,
+.kop-title-3 {
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #1b9d40;
+  margin-bottom: 1px;
+}
+
+.kop-title-4 {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #1b9d40; /* Kata PANDEAN juga warna hijau di PDF aslinya */
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+  margin-bottom: 6px;
+}
+
+.kop-address {
+  font-size: 0.7rem;
+  font-family: Arial, sans-serif; /* Alamat biasanya sans-serif */
+  margin-top: 15px;
+  text-align: right; /* Rata kanan */
+}
+
+.kop-contact {
+  font-size: 0.65rem;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column; /* Ditumpuk ke bawah */
+  align-items: flex-end; /* Rata kanan */
+  gap: 2px; /* Jarak vertikal antar item */
+  margin-top: 3px;
+}
+
+.kop-contact span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #000;
+  text-decoration: none;
+}
+
+.kop-contact img {
+  height: 12px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.divider-line {
+  border-bottom: 3px solid #000;
+  border-top: 1px solid #000; /* Double line style commonly used in Kop Surat */
+  height: 2px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+/* Meta & Recipient Address */
+.meta-address-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.meta-info {
+  margin-bottom: 20px;
+}
+
+.meta-info table {
+  border-collapse: collapse;
+}
+
+.meta-info td {
+  padding: 1px 0;
+  vertical-align: top;
+  font-size: 0.78rem;
+}
+
+.meta-info td:first-child {
+  width: 75px;
+}
+
+.recipient-box {
+  font-size: 0.78rem;
+  margin-left: 0; /* Rata kiri persis di bawah perihal */
+}
+
+.yth-line {
+  margin-bottom: 3px;
+}
+
+.yth-name {
+  font-weight: bold;
+  font-size: 0.82rem;
+  min-width: 140px;
+  border-bottom: 1px dashed transparent;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+/* highlight effect when updated */
+.yth-name.highlight {
+  background: rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.yth-di {
+  margin: 3px 0;
+}
+
+.yth-tempat {
+  padding-left: 15px;
+}
+
+/* Body */
+.surat-body {
+  font-size: 0.78rem;
+  text-align: justify;
+}
+
+.salut-opening {
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.basmalah {
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.paragraf {
+  text-indent: 35px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.detail-acara-table {
+  margin: 10px 0 10px 50px;
+  border-collapse: collapse;
+}
+
+.detail-acara-table td {
+  padding: 2px 0;
+  font-size: 0.78rem;
+}
+
+.salut-closing-arabic {
+  text-decoration: underline;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+.salut-closing {
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+/* Signatures */
+.signature-section {
+  font-size: 0.78rem;
+  margin-top: 25px;
+}
+
+.date-location {
+  text-align: right;
+  margin-right: 50px;
+  margin-bottom: 15px;
+}
+
+.panitia-title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 75px; /* Ditambah agar ruang tanda tangan lebih lega */
+  line-height: 1.3;
+}
+
+.sign-row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px; /* Jarak ke bagian mengetahui juga ditambah */
+}
+
+.sign-col {
+  text-align: center;
+  width: 200px;
+}
+
+.sign-name {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 1px;
+}
+
+.sign-role {
+  font-style: italic;
+  font-size: 0.74rem;
+}
+
+.mengetahui-section {
+  margin-top: 30px;
+}
+
+.mengetahui-title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 80px; /* Ditambah agar ruang tanda tangan lebih lega */
+  line-height: 1.3;
+}
+
+/* Actions Section */
+.action-section {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-action {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-print {
+  background: white;
+  color: #0f172a;
+  border: none;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.05);
+}
+
+.btn-print:hover {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+.btn-reset {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-reset:hover {
+  background: rgba(255,255,255,0.03);
+  color: white;
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* PRINT MEDIA QUERIES */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.5cm 1.5cm 1.5cm 1.5cm;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .header, 
+  .input-section, 
+  .action-section, 
+  .footer, 
+  .preview-label {
+    display: none !important;
+  }
+
+  .app-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .document-page {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    font-size: 11pt !important; /* Perfect standard print font sizing */
+    line-height: 1.5 !important;
+  }
+
+  .kop-title-1 { font-size: 14pt !important; }
+  .kop-title-2, .kop-title-3 { font-size: 11.5pt !important; }
+  .kop-title-4 { font-size: 13pt !important; }
+  .kop-address { font-size: 9pt !important; }
+  .kop-contact { font-size: 8pt !important; }
+
+  .meta-info td, 
+  .recipient-box, 
+  .surat-body, 
+  .detail-acara-table td, 
+  .signature-section {
+    font-size: 11pt !important;
+  }
+
+  .yth-name {
+    font-size: 11pt !important;
+  }
+
+  .sign-role {
+    font-size: 10pt !important;
+  }
+}

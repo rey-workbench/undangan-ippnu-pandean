@@ -1,0 +1,53 @@
+001,Takmir Masjid Al-Kahfi,Undangan
+002,PAC Blimbing,Undangan
+003,PR Arjosari,Undangan
+004,PR Polowijen,Undangan
+005,PR Pandanwangi,Undangan
+006,PR Kendalkerep,Undangan
+007,PR Purwantoro,Undangan
+008,Ketua RW 09,Undangan
+009,Ketua RW 10,Undangan
+010,Bpk. Ahmad Romdlon,Undangan
+011,Bpk. Yudi Priyanto,Undangan
+012,Bpk. Luthfi,Undangan
+013,Bpk. Aldi Firmansyah,Undangan
+014,Bpk. Faisol Hamzah,Undangan
+015,Ketua RW 11,Undangan
+016,Bu Erna Al Maghfiroh,Undangan
+017,Bu Zuhro Rosyidah,Undangan
+018,Bu Masrifah,Undangan
+019,Bpk. Romdlon,Permohonan Dana
+020,Ibu Muslimat NU Pandean,Permohonan Konsumsi
+021,Ketua RW 10,Permohonan Izin
+022,Bpk. Yudi Priyanto,Permohonan Dana
+023,Bpk. Luthfi,Permohonan Dana
+024,Bpk. Aldi Firmansyah,Permohonan Dana
+025,Bpk. Faisol Hamzah,Permohonan Dana
+026,(Tidak tercantum nama),Permohonan Dana
+027,Bu Erna Al Maghfiroh,Permohonan Dana
+028,Bu Zuhro Rosidah,Permohonan Dana
+029,Bu Masrifah,Permohonan Dana
+030,Ketua RT 01 RW 11,Undangan
+031,Ketua RT 02 RW 11,Undangan
+032,Ketua RT 03 RW 11,Undangan
+033,Ketua RT 04 RW 11,Undangan
+034,Ketua RT 05 RW 11,Undangan
+035,Ketua RT 01 RW 10,Undangan
+036,Ketua RT 02 RW 10,Undangan
+037,Ketua RT 03 RW 10,Undangan
+038,Ketua RT 04 RW 10,Undangan
+039,Ketua RT 05 RW 10,Undangan
+040,Ketua RT 06 RW 10,Undangan
+041,Ketua RT 07 RW 10,Undangan
+042,Ketua RT 01 RW 09,Undangan
+043,Ketua RT 02 RW 09,Undangan
+044,Ketua RT 03 RW 09,Undangan
+045,Ketua RT 04 RW 09,Undangan
+046,Ketua RT 05 RW 09,Undangan
+047,Ketua RT 06 RW 09,Undangan
+048,Ketua RT 08 RW 10,Undangan
+049,PR Jodipan,Undangan
+050,PK SMP Ma’arif 03,Undangan
+051,PK Syamsuddin,Undangan
+052,Bapak Asmualik,Permohonan Dana
+053,Bapak Asmualik,Undangan
