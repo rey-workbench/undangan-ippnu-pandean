@@ -1,70 +1,62 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const nameInput = document.getElementById('nama-input');
-  const nomorInput = document.getElementById('nomor-input');
-  const previewNama = document.getElementById('preview-nama');
-  const previewNomor = document.getElementById('preview-nomor');
-  const btnUpdate = document.getElementById('btn-update');
+document.addEventListener('DOMContentLoaded', async () => {
+  const container = document.getElementById('documents-container');
+  const template = document.getElementById('document-template');
   const btnPrint = document.getElementById('btn-print');
-  const btnReset = document.getElementById('btn-reset');
-
-  const defaultName = "Takmir Masjid Al-Kahfi";
-  const defaultNomor = "001";
+  const totalDokumenSpan = document.getElementById('total-dokumen');
 
   function getRomanMonth(monthIndex) {
     const romanMonths = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
     return romanMonths[monthIndex];
   }
 
-  function updateDocument() {
-    // 1. Update Name
-    const nameValue = nameInput.value.trim();
-    const newName = nameValue ? nameValue : defaultName;
-    previewNama.textContent = newName;
-    previewNama.classList.add('highlight');
+  try {
+    // Fetch data from data.txt
+    const response = await fetch('data.txt');
+    if (!response.ok) throw new Error('Gagal memuat data.txt');
+    const text = await response.text();
+
+    // Parse lines
+    const lines = text.split('\n').map(line => line.trim()).filter(line => line);
     
-    // 2. Update Nomor
-    const nomorValue = nomorInput.value.trim() || defaultNomor;
+    totalDokumenSpan.textContent = lines.length;
+
     const date = new Date();
     const romanMonth = getRomanMonth(date.getMonth());
     const year = date.getFullYear();
-    
-    const generatedNomor = `${nomorValue}/Pan-IIPB/IPNU-IPPNU/${romanMonth}/${year}`;
-    previewNomor.textContent = generatedNomor;
 
-    // Highlight cleanup
-    setTimeout(() => {
-      previewNama.classList.remove('highlight');
-    }, 800);
+    // Render each document
+    lines.forEach(line => {
+      // Format: Nomor, Nama, Perihal
+      const parts = line.split(',');
+      if (parts.length >= 2) {
+        const nomorValue = parts[0].trim();
+        const namaValue = parts[1].trim();
+        // Optional perihal, default to UNDANGAN
+        let perihalValue = "UNDANGAN";
+        if (parts.length >= 3 && parts[2].trim()) {
+           perihalValue = parts[2].trim().toUpperCase();
+        }
+
+        // Clone template
+        const clone = template.content.cloneNode(true);
+        
+        // Fill data
+        const generatedNomor = `${nomorValue}/Pan-IIPB/IPNU-IPPNU/${romanMonth}/${year}`;
+        
+        clone.querySelector('.preview-nomor').textContent = generatedNomor;
+        clone.querySelector('.preview-nama').textContent = namaValue;
+        clone.querySelector('.preview-perihal').textContent = perihalValue;
+        
+        container.appendChild(clone);
+      }
+    });
+
+  } catch (error) {
+    console.error(error);
+    container.innerHTML = `<p style="text-align: center; color: #f87171;">Gagal memuat data. Pastikan file data.txt tersedia.</p>`;
   }
-
-  btnUpdate.addEventListener('click', updateDocument);
-
-  nameInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') updateDocument();
-  });
-  
-  nomorInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') updateDocument();
-  });
 
   btnPrint.addEventListener('click', () => {
     window.print();
   });
-
-  btnReset.addEventListener('click', () => {
-    nameInput.value = '';
-    nomorInput.value = '';
-    previewNama.textContent = defaultName;
-    
-    // Reset nomor to default current date
-    const date = new Date();
-    const romanMonth = getRomanMonth(date.getMonth());
-    const year = date.getFullYear();
-    previewNomor.textContent = `${defaultNomor}/Pan-IIPB/IPNU-IPPNU/${romanMonth}/${year}`;
-    
-    nomorInput.focus();
-  });
-
-  // Set initial default date on page load
-  updateDocument();
 });

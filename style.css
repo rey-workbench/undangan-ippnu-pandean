@@ -529,6 +529,7 @@ body {
     width: 100% !important;
     font-size: 11pt !important; /* Perfect standard print font sizing */
     line-height: 1.5 !important;
+    page-break-after: always !important; /* Setiap dokumen diprint di halaman baru */
   }
 
   .kop-title-1 { font-size: 14pt !important; }
