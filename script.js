@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const container = document.getElementById('documents-container');
+  const exportContainer = document.getElementById('export-container');
+  const recipientList = document.getElementById('recipient-list');
+  const singlePreviewContainer = document.getElementById('single-preview-container');
   const template = document.getElementById('document-template');
   const btnPrint = document.getElementById('btn-print');
   const btnPrintNative = document.getElementById('btn-print-native');
@@ -25,8 +27,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const romanMonth = getRomanMonth(date.getMonth());
     const year = date.getFullYear();
 
-    // Render each document
-    lines.forEach(line => {
+    // Render each document and create sidebar list
+    lines.forEach((line, index) => {
       // Format: Nomor, Nama, Perihal
       const parts = line.split(',');
       if (parts.length >= 2) {
@@ -48,13 +50,52 @@ document.addEventListener('DOMContentLoaded', async () => {
         clone.querySelector('.preview-nama').textContent = namaValue;
         clone.querySelector('.preview-perihal').textContent = perihalValue;
         
-        container.appendChild(clone);
+        // Append all pages to exportContainer (always hidden, used for printing/generating PDF)
+        exportContainer.appendChild(clone);
+
+        // Create sidebar item
+        const item = document.createElement('button');
+        item.className = 'recipient-item';
+        if (index === 0) item.classList.add('active');
+        item.innerHTML = `
+          <span class="recipient-num">${nomorValue}</span>
+          <span class="recipient-name">${namaValue}</span>
+        `;
+        
+        item.addEventListener('click', () => {
+          // Deactivate previous active item
+          const activeItem = recipientList.querySelector('.recipient-item.active');
+          if (activeItem) activeItem.classList.remove('active');
+          
+          // Activate this item
+          item.classList.add('active');
+          
+          // Update preview right pane by cloning the page from exportContainer
+          const targetPage = exportContainer.children[index];
+          singlePreviewContainer.innerHTML = '';
+          singlePreviewContainer.appendChild(targetPage.cloneNode(true));
+
+          // Close sidebar on mobile after selection
+          const sidebarOverlay = document.getElementById('sidebar-overlay');
+          if (sidebarOverlay) {
+            sidebarOverlay.classList.remove('active');
+          }
+        });
+
+        recipientList.appendChild(item);
       }
     });
 
+    // Load first preview page initially
+    if (exportContainer.children.length > 0) {
+      singlePreviewContainer.appendChild(exportContainer.children[0].cloneNode(true));
+    }
+
   } catch (error) {
     console.error(error);
-    container.innerHTML = `<p style="text-align: center; color: #f87171;">Gagal memuat data. Pastikan file data.txt tersedia.</p>`;
+    if (recipientList) {
+      recipientList.innerHTML = `<p style="color: #f87171; font-size: 0.85rem; padding: 10px;">Gagal memuat data.</p>`;
+    }
   }
 
   btnPrint.addEventListener('click', async () => {
@@ -62,7 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     btnPrint.disabled = true;
     btnPrint.innerHTML = 'Sedang membuat PDF (0%)...';
 
-    const pages = document.querySelectorAll('.document-page');
+    const pages = document.querySelectorAll('#export-container .document-page');
     if (pages.length === 0) {
       alert('Tidak ada dokumen untuk diexport.');
       btnPrint.disabled = false;
@@ -82,6 +123,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       },
       jsPDF: { unit: 'cm', format: [21.5, 33], orientation: 'portrait' }
     };
+
+    exportContainer.classList.add('exporting');
 
     try {
       // Get the jsPDF constructor from global namespace
@@ -118,18 +161,47 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
 
       pdf.save('undangan-ipnu-ippnu-pandean.pdf');
-      
-      btnPrint.disabled = false;
-      btnPrint.innerHTML = originalText;
     } catch (err) {
       console.error(err);
+      alert('Gagal membuat PDF: ' + err.message);
+    } finally {
+      exportContainer.classList.remove('exporting');
       btnPrint.disabled = false;
       btnPrint.innerHTML = originalText;
-      alert('Gagal membuat PDF: ' + err.message);
     }
   });
 
   btnPrintNative.addEventListener('click', () => {
     window.print();
   });
+
+  // Handle Developer Modal Close
+  const devModal = document.getElementById('dev-modal');
+  const btnCloseModal = document.getElementById('btn-close-modal');
+  if (devModal && btnCloseModal) {
+    btnCloseModal.addEventListener('click', () => {
+      devModal.classList.add('hidden');
+    });
+  }
+
+  // Handle Mobile Sidebar Toggle
+  const btnShowList = document.getElementById('btn-show-list');
+  const btnCloseSidebar = document.getElementById('btn-close-sidebar');
+  const sidebarOverlay = document.getElementById('sidebar-overlay');
+  
+  if (btnShowList && btnCloseSidebar && sidebarOverlay) {
+    btnShowList.addEventListener('click', () => {
+      sidebarOverlay.classList.add('active');
+    });
+    
+    btnCloseSidebar.addEventListener('click', () => {
+      sidebarOverlay.classList.remove('active');
+    });
+    
+    sidebarOverlay.addEventListener('click', (e) => {
+      if (e.target === sidebarOverlay) {
+        sidebarOverlay.classList.remove('active');
+      }
+    });
+  }
 });
