@@ -529,7 +529,9 @@ body {
     width: 100% !important;
     font-size: 11pt !important; /* Perfect standard print font sizing */
     line-height: 1.5 !important;
+    page-break-inside: avoid !important;
     page-break-after: always !important; /* Setiap dokumen diprint di halaman baru */
+    min-height: 100% !important;
   }
 
   .kop-title-1 { font-size: 14pt !important; }
@@ -553,4 +555,9 @@ body {
   .sign-role {
     font-size: 10pt !important;
   }
+  
+  /* Shrink signature margins slightly in print so it doesn't spill to next page */
+  .panitia-title { margin-bottom: 55px !important; }
+  .mengetahui-title { margin-bottom: 60px !important; }
+  .mengetahui-section { margin-top: 15px !important; }
 }
