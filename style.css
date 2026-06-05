@@ -525,12 +525,11 @@ body {
   .document-page {
     box-shadow: none !important;
     border-radius: 0 !important;
-    /* Scale down sedikit agar selalu muat 1 halaman, termasuk dengan header/footer browser aktif */
     width: 21.5cm !important;
     min-height: 33cm !important;
-    padding: 1.2cm 1.5cm !important;
-    font-size: 10.5pt !important;
-    line-height: 1.4 !important;
+    padding: 0.8cm 1.5cm 0.8cm 1.5cm !important;
+    font-size: 11pt !important;
+    line-height: 1.45 !important;
     page-break-after: always !important;
     page-break-inside: avoid !important;
     overflow: hidden !important;

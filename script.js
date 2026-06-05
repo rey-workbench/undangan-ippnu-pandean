@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('documents-container');
   const template = document.getElementById('document-template');
   const btnPrint = document.getElementById('btn-print');
+  const btnPrintNative = document.getElementById('btn-print-native');
   const totalDokumenSpan = document.getElementById('total-dokumen');
 
   function getRomanMonth(monthIndex) {
@@ -98,9 +99,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       for (let i = 0; i < pages.length; i++) {
         btnPrint.innerHTML = `Memproses Halaman ${i + 1} dari ${pages.length} (${Math.round((i / pages.length) * 100)}%)...`;
 
-        // Render direct element using html2canvas
+        // Render direct element using html2canvas with scale 3 for HD crispness
         const canvas = await html2canvas(pages[i], {
-          scale: 1.5, // 1.5x scale is crisp enough and keeps PDF file size optimal
+          scale: 3, // 3x scale is very crisp and clear (HD)
           useCORS: false,
           allowTaint: true,
           logging: false
@@ -126,5 +127,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       btnPrint.innerHTML = originalText;
       alert('Gagal membuat PDF: ' + err.message);
     }
+  });
+
+  btnPrintNative.addEventListener('click', () => {
+    window.print();
   });
 });
