@@ -12,6 +12,8 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -28,8 +30,8 @@
         <span class="preview-label-dot"></span>
         Preview <span id="total-dokumen">0</span> Dokumen
       </div>
-      
-      <div id="documents-container" style="display: flex; flex-direction: column; gap: 40px;">
+
+      <div id="documents-container">
         <!-- Generated documents will appear here -->
       </div>
     </section>
@@ -44,7 +46,7 @@
             <img src="assets/image1.png" alt="Logo IPPNU" class="logo-ippnu">
           </div>
           <div class="kop-text">
-            <div class="kop-title-1">IPNU IPPNU PANDEAN BERSHOLAWAT 2.0</div>
+            <div class="kop-title-1">IPNU IPPNU PANDEAN BERSHOLAWAT 3.0</div>
             <div class="kop-title-2">IKATAN PELAJAR NAHDLATUL ULAMA</div>
             <div class="kop-title-3">IKATAN PELAJAR PUTRI NAHDLATUL ULAMA</div>
             <div class="kop-title-4">PANDEAN</div>
@@ -92,33 +94,37 @@
           <p class="basmalah">Bismillahirrahmaanirrahiim</p>
 
           <p class="paragraf">Salam silaturahmi kami sampaikan, semoga taufiq dan hidayah Allah SWT senantiasa
-            tercurahkan pada kita, sehingga dapat mengemban amanat dengan sebaik-baiknya. Sholawat dan salam semoga
-            tetap tercurahkan kepada junjungan kita Nabi Muhammad SAW. Aamiin.</p>
+            tercurahkan pada kita, sehingga dapat mengemban amanat dengan sebaik-baiknya.</p>
 
-          <p class="paragraf">Sehubungan dengan akan diselenggarakannya <strong>"IPNU IPPNU PANDEAN BERSHOLAWAT
-              2.0"</strong> dengan tema <strong>"Bersama dalam ukhuwah berjuang menggapai cintanya"</strong> yang akan
-            dilaksanakan pada:</p>
+          <p class="paragraf">Sholawat dan salam semoga tetap tercurahkan kepada junjungan kita Nabi Muhammad SAW.
+            Aamiin.
+          </p>
+
+          <p class="paragraf">Sehubungan dengan akan diselenggarakannya <strong><em>"IPNU IPPNU PANDEAN BERSHOLAWAT
+              2.0"</em></strong> dengan tema <strong><em>"Bersama dalam ukhuwah berjuang menggapai cintanya"</em></strong> yang akan
+            dilaksanakan pada :</p>
 
           <table class="detail-acara-table">
             <tr>
-              <td style="width: 80px;">hari</td>
-              <td>: Minggu</td>
+              <td style="width: 80px;">Hari</td>
+              <td>: Ahad</td>
             </tr>
             <tr>
-              <td>tanggal</td>
-              <td>: 21 Juli 2024</td>
+              <td>Tanggal</td>
+              <td>: 19 Juli 2026</td>
             </tr>
             <tr>
-              <td>pukul</td>
-              <td>: 19:00 - selesai</td>
+              <td>Pukul</td>
+              <td>: 19.00 - selesai</td>
             </tr>
             <tr>
-              <td>tempat</td>
+              <td>Tempat</td>
               <td>: Halaman Balai RW 10</td>
             </tr>
           </table>
 
-          <p class="paragraf">berkaitan dengan hal diatas, maka kami selaku panitia pelaksana bermaksud mengundang bapak
+          <p class="paragraf">berkaitan dengan hal diatas, maka kami selaku panitia pelaksana bermaksud mengundang
+            bapak/ibu
             untuk hadir dalam acara tersebut.</p>
 
           <p class="paragraf">Demikian surat undangan ini kami buat, atas kesediaan dan kerjasamanya kami sampaikan
@@ -130,10 +136,10 @@
 
         <!-- Tanda Tangan Section -->
         <div class="signature-section">
-          <div class="date-location">Malang, 17 Dzulqa'dah 1445 H<br>25 Mei 2024 M</div>
+          <div class="date-location">Malang, 18 Dzulqa'dah 1447 H<br>05 Mei 2026 M</div>
 
           <div class="panitia-title">
-            PANITIA IPNU IPPNU PANDEAN BERSHOLAWAT 2.0<br>
+            PANITIA IPNU IPPNU PANDEAN BERSHOLAWAT 3.0<br>
             IKATAN PELAJAR NAHDLATUL ULAMA<br>
             IKATAN PELAJAR PUTRI NAHDLATUL ULAMA<br>
             PANDEAN
@@ -156,7 +162,7 @@
 
             <div class="sign-row">
               <div class="sign-col">
-                <div class="sign-name">M. YUAN AL HIKAM</div>
+                <div class="sign-name">NANDA RISKI ALHAQKI</div>
                 <div class="sign-role">Ketua IPNU</div>
               </div>
               <div class="sign-col">
@@ -172,7 +178,8 @@
     <!-- Actions -->
     <section class="action-section" style="margin-top: 40px;">
       <button id="btn-print" class="btn-action btn-print">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
           <polyline points="6 9 6 2 18 2 18 9"></polyline>
           <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
           <rect x="6" y="14" width="12" height="8"></rect>

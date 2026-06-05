@@ -56,7 +56,75 @@ document.addEventListener('DOMContentLoaded', async () => {
     container.innerHTML = `<p style="text-align: center; color: #f87171;">Gagal memuat data. Pastikan file data.txt tersedia.</p>`;
   }
 
-  btnPrint.addEventListener('click', () => {
-    window.print();
+  btnPrint.addEventListener('click', async () => {
+    const originalText = btnPrint.innerHTML;
+    btnPrint.disabled = true;
+    btnPrint.innerHTML = 'Sedang membuat PDF (0%)...';
+
+    const pages = document.querySelectorAll('.document-page');
+    if (pages.length === 0) {
+      alert('Tidak ada dokumen untuk diexport.');
+      btnPrint.disabled = false;
+      btnPrint.innerHTML = originalText;
+      return;
+    }
+
+    const opt = {
+      margin: 0,
+      filename: 'undangan-ipnu-ippnu-pandean.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { 
+        scale: 1.5, 
+        useCORS: false,
+        logging: false,
+        letterRendering: true
+      },
+      jsPDF: { unit: 'cm', format: [21.5, 33], orientation: 'portrait' }
+    };
+
+    try {
+      // Get the jsPDF constructor from global namespace
+      const jsPDFConstructor = window.jsPDF || (window.jspdf && window.jspdf.jsPDF);
+      if (!jsPDFConstructor) {
+        throw new Error('Library jsPDF tidak ditemukan. Pastikan CDN terpasang.');
+      }
+
+      const pdf = new jsPDFConstructor({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: [215, 330] // F4 Folio Size (21.5cm x 33cm)
+      });
+
+      for (let i = 0; i < pages.length; i++) {
+        btnPrint.innerHTML = `Memproses Halaman ${i + 1} dari ${pages.length} (${Math.round((i / pages.length) * 100)}%)...`;
+
+        // Render direct element using html2canvas
+        const canvas = await html2canvas(pages[i], {
+          scale: 1.5, // 1.5x scale is crisp enough and keeps PDF file size optimal
+          useCORS: false,
+          allowTaint: true,
+          logging: false
+        });
+
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+
+        if (i > 0) {
+          pdf.addPage();
+        }
+
+        // Draw image to fill the exact F4 page size
+        pdf.addImage(imgData, 'JPEG', 0, 0, 215, 330);
+      }
+
+      pdf.save('undangan-ipnu-ippnu-pandean.pdf');
+      
+      btnPrint.disabled = false;
+      btnPrint.innerHTML = originalText;
+    } catch (err) {
+      console.error(err);
+      btnPrint.disabled = false;
+      btnPrint.innerHTML = originalText;
+      alert('Gagal membuat PDF: ' + err.message);
+    }
   });
 });

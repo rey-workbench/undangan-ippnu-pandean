@@ -21,7 +21,7 @@ body {
   color: var(--text-main);
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   padding: 30px 20px;
 }
@@ -179,45 +179,52 @@ body {
   box-shadow: 0 0 8px var(--primary-accent);
 }
 
-/* A4 Document styling */
+/* F4 Folio Document styling */
 .document-page {
   background: white;
   color: #000000;
-  width: 100%;
-  padding: 40px 50px;
+  width: 21.5cm;
+  height: 33cm;
+  padding: 0.8cm 1.5cm 0.8cm 1.5cm;
   box-shadow: var(--document-shadow);
   border-radius: 12px;
-  font-size: 0.8rem;
-  line-height: 1.4;
+  font-size: 11pt;
+  line-height: 1.45;
   position: relative;
-  font-family: Arial, Helvetica, sans-serif; /* matches standard docx default sans-serif font */
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 0 auto 40px auto;
+  page-break-after: always;
+  page-break-inside: avoid;
+  break-after: page;
 }
 
 /* Kop Surat */
 .kop-surat {
   position: relative;
-  min-height: 130px; /* Diperbesar untuk menyesuaikan logo */
-  padding-left: 245px; /* Memberi ruang lebih untuk logo yang membesar */
-  margin-bottom: 8px;
+  min-height: 145px; /* Diperbesar untuk menyesuaikan logo */
+  padding-left: 270px; /* Memberi ruang lebih untuk logo yang membesar */
+  margin-bottom: 6px;
   font-family: "Times New Roman", Times, serif; /* Menggunakan font serif untuk header agar persis dokumen resmi */
 }
 
 .logo-container {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 5px;
   display: flex;
-  gap: 10px; /* Jarak sedikit dirapatkan agar proporsional */
+  gap: 12px; /* Jarak sedikit dirapatkan agar proporsional */
   align-items: center;
 }
 
 .logo-ipnu {
-  height: 115px; /* Logo jauh lebih besar */
+  height: 135px; /* Logo jauh lebih besar */
   width: auto;
 }
 
 .logo-ippnu {
-  height: 115px; /* Logo jauh lebih besar */
+  height: 135px; /* Logo jauh lebih besar */
   width: auto;
 }
 
@@ -287,54 +294,42 @@ body {
   border-bottom: 3px solid #000;
   border-top: 1px solid #000; /* Double line style commonly used in Kop Surat */
   height: 2px;
-  margin-top: 8px;
-  margin-bottom: 20px;
+  margin-top: 6px;
+  margin-bottom: 8px;
 }
 
 /* Meta & Recipient Address */
 .meta-address-section {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 25px;
-}
-
-.meta-info {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .meta-info table {
-  border-collapse: collapse;
+  width: 100%;
 }
 
 .meta-info td {
-  padding: 1px 0;
+  padding: 2px 0;
   vertical-align: top;
-  font-size: 0.78rem;
 }
 
 .meta-info td:first-child {
-  width: 75px;
+  width: 80px;
 }
 
 .recipient-box {
-  font-size: 0.78rem;
-  margin-left: 0; /* Rata kiri persis di bawah perihal */
+  margin-top: 10px;
+  margin-left: 80px; /* Menjorok ke dalam sejajar dengan teks perihal */
 }
 
 .yth-line {
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .yth-name {
   font-weight: bold;
-  font-size: 0.82rem;
-  min-width: 140px;
-  border-bottom: 1px dashed transparent;
-  transition: all 0.2s ease;
-  display: inline-block;
+  margin-bottom: 2px;
 }
 
-/* highlight effect when updated */
 .yth-name.highlight {
   background: rgba(16, 185, 129, 0.1);
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
@@ -352,6 +347,7 @@ body {
 .surat-body {
   font-size: 0.78rem;
   text-align: justify;
+  margin-left: 80px; /* Menjorok ke dalam sejajar dengan teks perihal dan Kepada Yth */
 }
 
 .salut-opening {
@@ -366,55 +362,54 @@ body {
 }
 
 .paragraf {
-  text-indent: 35px;
-  margin-bottom: 12px;
-  line-height: 1.4;
+  margin-bottom: 10px;
+  line-height: 1.3;
 }
 
 .detail-acara-table {
-  margin: 10px 0 10px 50px;
+  margin: 4px 0 4px 50px;
   border-collapse: collapse;
 }
 
 .detail-acara-table td {
-  padding: 2px 0;
+  padding: 0.5px 0;
   font-size: 0.78rem;
 }
 
 .salut-closing-arabic {
   text-decoration: underline;
   font-style: italic;
-  margin-top: 15px;
+  margin-top: 6px;
 }
 
 .salut-closing {
   font-weight: bold;
-  margin-bottom: 25px;
+  margin-bottom: 8px;
 }
 
 /* Signatures */
 .signature-section {
   font-size: 0.78rem;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .date-location {
   text-align: right;
   margin-right: 50px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .panitia-title {
   text-align: center;
   font-weight: bold;
-  margin-bottom: 75px; /* Ditambah agar ruang tanda tangan lebih lega */
+  margin-bottom: 45px; /* Lebar ruang tanda tangan dipulihkan agar leluasa */
   line-height: 1.3;
 }
 
 .sign-row {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 40px; /* Jarak ke bagian mengetahui juga ditambah */
+  margin-bottom: 25px; /* Jarak ke bagian mengetahui */
 }
 
 .sign-col {
@@ -434,13 +429,13 @@ body {
 }
 
 .mengetahui-section {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .mengetahui-title {
   text-align: center;
   font-weight: bold;
-  margin-bottom: 80px; /* Ditambah agar ruang tanda tangan lebih lega */
+  margin-bottom: 45px; /* Lebar ruang tanda tangan dipulihkan agar leluasa */
   line-height: 1.3;
 }
 
@@ -497,8 +492,8 @@ body {
 /* PRINT MEDIA QUERIES */
 @media print {
   @page {
-    size: A4;
-    margin: 1.5cm 1.5cm 1.5cm 1.5cm;
+    size: 21.5cm 33cm; /* Ukuran Kertas F4 (Folio) */
+    margin: 0;
   }
 
   body {
@@ -520,44 +515,25 @@ body {
     max-width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
+    gap: 0 !important;
+  }
+
+  #documents-container {
+    gap: 0 !important;
   }
 
   .document-page {
     box-shadow: none !important;
     border-radius: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    font-size: 11pt !important; /* Perfect standard print font sizing */
-    line-height: 1.5 !important;
+    /* Scale down sedikit agar selalu muat 1 halaman, termasuk dengan header/footer browser aktif */
+    width: 21.5cm !important;
+    min-height: 33cm !important;
+    padding: 1.2cm 1.5cm !important;
+    font-size: 10.5pt !important;
+    line-height: 1.4 !important;
+    page-break-after: always !important;
     page-break-inside: avoid !important;
-    page-break-after: always !important; /* Setiap dokumen diprint di halaman baru */
-    min-height: 100% !important;
+    overflow: hidden !important;
+    margin: 0 !important;
   }
-
-  .kop-title-1 { font-size: 14pt !important; }
-  .kop-title-2, .kop-title-3 { font-size: 11.5pt !important; }
-  .kop-title-4 { font-size: 13pt !important; }
-  .kop-address { font-size: 9pt !important; }
-  .kop-contact { font-size: 8pt !important; }
-
-  .meta-info td, 
-  .recipient-box, 
-  .surat-body, 
-  .detail-acara-table td, 
-  .signature-section {
-    font-size: 11pt !important;
-  }
-
-  .yth-name {
-    font-size: 11pt !important;
-  }
-
-  .sign-role {
-    font-size: 10pt !important;
-  }
-  
-  /* Shrink signature margins slightly in print so it doesn't spill to next page */
-  .panitia-title { margin-bottom: 55px !important; }
-  .mengetahui-title { margin-bottom: 60px !important; }
-  .mengetahui-section { margin-top: 15px !important; }
 }
